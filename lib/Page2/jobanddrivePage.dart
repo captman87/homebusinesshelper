@@ -207,6 +207,20 @@ class _JobAndDriveState extends State<JobAndDrive> {
           ),
         ),
       ),
+      Container(
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.only(right: 25.w, top: 20.h),
+          child: ElevatedButton(
+              onPressed: () {
+                print(selectedValue1);
+                print(selectedValue2);
+              },
+              child: Text('조회',
+                  style: TextStyle(fontSize: 15.sp, fontFamily: 'customfont')),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.redAccent,
+                minimumSize: Size(70.w, 35.h),
+              )))
     ]);
   }
 }
