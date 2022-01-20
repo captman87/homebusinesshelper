@@ -1,16 +1,20 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:homebusinesshelper/Page2/init_script.dart';
 import 'Page1/cancerproductlist.dart';
 import 'Page1/gungangproductlist.dart';
 import 'Page1/productlistPage.dart';
-import 'Page2/jobanddrivePage.dart';
+import 'Page2/s_list.dart';
+import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
 import 'Page3/viewtile.dart';
 
 List<Map<String, dynamic>> json = dList;
 DiseaseList list = DiseaseList.fromJson(json);
+List<Map<String, dynamic>> jsonscript = listofscript;
+ScriptList scriptlist = ScriptList.fromJson(jsonscript);
 List<String> titlelist = ['1. 상품별 특징', '2. 직업 & 운전별 U/W', '3. 간편심사 예외 병력 U/W'];
 double appbarheight = 80.w;
 
@@ -34,7 +38,7 @@ class App extends StatelessWidget {
         routes: {
           '/': (context) => const MainPage(),
           '/productlist': (context) => const ProductInfoList(),
-          '/jobanddrive': (context) => const JobAndDrive(),
+          '/jobanddrive': (context) => const ScriptForProduct(),
           '/cancer': (context) => const CancerProductList(),
           '/gungang': (context) => const GungangProductList(),
         },
@@ -80,17 +84,20 @@ class _MainPageState extends State<MainPage>
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-            title: Text(
-              'AIA생명 재택영업 도우미',
-              style: TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.redAccent),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(35.h),
+          child: AppBar(
+              title: Text(
+                'AIA생명 재택영업 도우미',
+                style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont'),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.redAccent),
+        ),
         body: Column(
           children: [
             Container(
-              height: 50.h,
+              height: 40.h,
               color: Colors.grey[200],
               child: TabBar(
                 indicatorColor: Colors.redAccent,
@@ -100,8 +107,10 @@ class _MainPageState extends State<MainPage>
                     TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
                 labelColor: Colors.black,
                 tabs: const [
-                  Tab(text: '간편 학습'),
-                  Tab(text: '간편 설계'),
+                  Tab(text: '각종 양식'),
+                  Tab(
+                    text: '스크립트',
+                  ),
                   Tab(text: '간편 U/W'),
                 ],
                 controller: tabController,
@@ -115,7 +124,7 @@ class _MainPageState extends State<MainPage>
                       width: double.infinity,
                       height: double.infinity,
                       color: Colors.white),
-                  const JobAndDrive(),
+                  const ScriptForProduct(),
                   const Custom_viewtile(),
                 ],
               ),

@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-const List<Map<String, dynamic>> dList = [
+const List<Map<String, String>> dList = [
   {
     "name": "A형 간염",
     "operation": "3개월 후 가능(7일 이내 입원만)",
