@@ -1,11 +1,9 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:homebusinesshelper/Page2/init_script.dart';
 import 'Page1/cancerproductlist.dart';
 import 'Page1/gungangproductlist.dart';
 import 'Page1/productlistPage.dart';
-import 'Page2/s_list.dart';
 import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
@@ -13,8 +11,6 @@ import 'Page3/viewtile.dart';
 
 List<Map<String, dynamic>> json = dList;
 DiseaseList list = DiseaseList.fromJson(json);
-List<Map<String, dynamic>> jsonscript = listofscript;
-ScriptList scriptlist = ScriptList.fromJson(jsonscript);
 List<String> titlelist = ['1. 상품별 특징', '2. 직업 & 운전별 U/W', '3. 간편심사 예외 병력 U/W'];
 double appbarheight = 80.w;
 
