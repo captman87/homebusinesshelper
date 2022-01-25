@@ -1,9 +1,7 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Page1/cancerproductlist.dart';
-import 'Page1/gungangproductlist.dart';
-import 'Page1/productlistPage.dart';
+import 'Page1/variousformsPage.dart';
 import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
@@ -33,10 +31,6 @@ class App extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const MainPage(),
-          '/productlist': (context) => const ProductInfoList(),
-          '/jobanddrive': (context) => const ScriptForProduct(),
-          '/cancer': (context) => const CancerProductList(),
-          '/gungang': (context) => const GungangProductList(),
         },
       ),
     );
@@ -115,13 +109,10 @@ class _MainPageState extends State<MainPage>
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: [
-                  Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      color: Colors.white),
-                  const ScriptForProduct(),
-                  const Custom_viewtile(),
+                children: const [
+                  VariousFormsPage(),
+                  ScriptForProduct(),
+                  Custom_viewtile(),
                 ],
               ),
             ),
