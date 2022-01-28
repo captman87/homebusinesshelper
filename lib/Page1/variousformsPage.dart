@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:styled_text/styled_text.dart';
 
 class VariousFormsPage extends StatelessWidget {
   const VariousFormsPage({Key? key}) : super(key: key);
@@ -11,165 +10,227 @@ class VariousFormsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      return Column(
+      return ListView(
         children: [
-          Container(
-            height: constraints.maxHeight / 3,
-            color: Colors.amber,
-            child: GridView.count(
-              // physics: const NeverScrollableScrollPhysics(),
-              childAspectRatio: (3 / 2),
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 20,
-              padding: EdgeInsets.all(10.w),
-              children: [
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue[900],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '부담보동의\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue[700],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '간단녹취\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue[400],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '상설동의\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[900],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '특약삭제\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[700],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '청약철회\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[400],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                    child: StyledText(
-                      text: '철회방어\n스크립트',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontFamily: 'customfont'),
-                      tags: {
-                        'b': StyledTextTag(
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        'cr': StyledTextTag(
-                            style: const TextStyle(color: Colors.red)),
-                        'cb': StyledTextTag(
-                            style: const TextStyle(color: Colors.blue)),
-                      },
-                    )),
-              ],
-            ),
+          Column(
+            children: [
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.blue[800],
+                          fixedSize: Size(100.w, 80.h)),
+                      child: Text(
+                        '부담보\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                  const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+                  ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.blue[600],
+                          fixedSize: Size(100.w, 80.h)),
+                      child: Text(
+                        '간단녹취\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                  const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.blue[400],
+                          fixedSize: Size(100.w, 80.h)),
+                      onPressed: () {},
+                      child: Text(
+                        '상설동의\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orange[800],
+                          fixedSize: Size(100.w, 80.h)),
+                      onPressed: () {},
+                      child: Text(
+                        '특약삭제\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                  const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orange[600],
+                          fixedSize: Size(100.w, 80.h)),
+                      onPressed: () {},
+                      child: Text(
+                        '청약철회\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                  const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orange[400],
+                          fixedSize: Size(100.w, 80.h)),
+                      onPressed: () {},
+                      child: Text(
+                        '철회방어\n스크립트',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontFamily: 'customfont'),
+                      )),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green[800], fixedSize: Size(330.w, 40.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '아웃콜 요청 접수',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green[400], fixedSize: Size(330.w, 40.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '청약철회 요청 접수',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[300],
+                      fixedSize: Size(100.w, 80.h)),
+                  child: Text(
+                    '표적\n항암치료\n공부하기',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[300],
+                      fixedSize: Size(100.w, 80.h)),
+                  child: Text(
+                    '표적\n항암치료\n평균 치료비',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[300],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '암 종류별\n평균 치료비',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
+                  )),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.only(top: 20)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[600],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[600],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[600],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[800],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[800],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+              const Padding(padding: EdgeInsets.only(left: 10, right: 10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.purple[800],
+                      fixedSize: Size(100.w, 80.h)),
+                  onPressed: () {},
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
+                  )),
+            ],
           ),
         ],
       );
