@@ -2,10 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-<<<<<<< HEAD
-=======
 import 'Page1/variousformsPage.dart';
->>>>>>> 5ea11558dd03bd17b8ff48bd412d46e69f2b760f
 import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
