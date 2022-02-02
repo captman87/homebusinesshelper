@@ -1,4 +1,4 @@
-package com.example.homebusinesshelper
+package com.nationofman.homebusinesshelper
 
 import io.flutter.embedding.android.FlutterActivity
 

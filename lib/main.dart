@@ -1,21 +1,30 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Page1/cancerproductlist.dart';
-import 'Page1/gungangproductlist.dart';
-import 'Page1/productlistPage.dart';
 import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
 import 'Page3/viewtile.dart';
+import 'auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 List<Map<String, dynamic>> json = dList;
 DiseaseList list = DiseaseList.fromJson(json);
 List<String> titlelist = ['1. 상품별 특징', '2. 직업 & 운전별 U/W', '3. 간편심사 예외 병력 U/W'];
 double appbarheight = 80.w;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FlutterNativeSplash.removeAfter(initialization);
   runApp(const App());
+}
+
+void initialization(BuildContext context) async {
+  // This is where you can initialize the resources needed by your app while
+  // the splash screen is displayed.  After this function completes, the
+  // splash screen will be removed.
 }
 
 class App extends StatelessWidget {
@@ -32,11 +41,7 @@ class App extends StatelessWidget {
         title: 'AIA간편심사 병력확인',
         initialRoute: '/',
         routes: {
-          '/': (context) => const MainPage(),
-          '/productlist': (context) => const ProductInfoList(),
-          '/jobanddrive': (context) => const ScriptForProduct(),
-          '/cancer': (context) => const CancerProductList(),
-          '/gungang': (context) => const GungangProductList(),
+          '/': (context) => const GetAuth(),
         },
       ),
     );

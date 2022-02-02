@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692657390549",
+    "project_id": "homebusinesshelper-2022",
+    "storage_bucket": "homebusinesshelper-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692657390549:android:0e7c4661d724b8f652b35c",
+        "android_client_info": {
+          "package_name": "com.nationofman.homebusinesshelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692657390549-h06ub3o97q07nnb59kvfb8gkjisjt1cn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYQ_1sDZTQ0yJAB1QA4MqF0AWUgyUHdvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692657390549-h06ub3o97q07nnb59kvfb8gkjisjt1cn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
