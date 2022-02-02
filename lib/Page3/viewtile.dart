@@ -109,7 +109,7 @@ class CustomListTile extends StatelessWidget {
           children: [
             Text(
               list.diseaseinfo[index].diseasename,
-              style: TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
+              style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont'),
               textAlign: TextAlign.start,
             ),
             Padding(
