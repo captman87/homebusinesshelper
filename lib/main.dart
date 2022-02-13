@@ -1,31 +1,44 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Page1/variousformsPage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
+import 'package:homebusinesshelper/Page0/scriptPages/chunchuldefence_Script.dart';
+import 'Page0/scriptPages/easyrecord_Script.dart';
+import 'Page0/scriptPages/sangsulagree_Script.dart';
+import 'Page0/scriptPages/tukyakdel_Script.dart';
+import 'Page0/scriptPages/budambo_Script.dart';
+import 'Page0/variousformsPage.dart';
+import 'Page1/selfstudyPage.dart';
 import 'Page2/scriptforproduct.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
 import 'Page3/viewtile.dart';
+import 'admin.dart';
 import 'auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 List<Map<String, dynamic>> json = dList;
 DiseaseList list = DiseaseList.fromJson(json);
-List<String> titlelist = ['1. 상품별 특징', '2. 직업 & 운전별 U/W', '3. 간편심사 예외 병력 U/W'];
 double appbarheight = 80.w;
+bool isAuth = false;
+String? unum;
+String? uname;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   FlutterNativeSplash.removeAfter(initialization);
+  await Firebase.initializeApp();
+  FirebaseAuth.instance.signInAnonymously();
+  await AutoLogin();
   runApp(const App());
 }
 
 void initialization(BuildContext context) async {
-  // This is where you can initialize the resources needed by your app while
-  // the splash screen is displayed.  After this function completes, the
-  // splash screen will be removed.
+  await Future.delayed(const Duration(seconds: 1));
 }
 
 class App extends StatelessWidget {
@@ -40,9 +53,16 @@ class App extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'AIA간편심사 병력확인',
-        initialRoute: '/',
+        home: isAuth ? const MainPage() : const GetAuth(),
         routes: {
-          '/': (context) => const GetAuth(),
+          '/budambo': (context) => const BudamboScript(),
+          '/easyrecord': (context) => const EasyrecordScript(),
+          '/sangsulagree': (context) => const SangsulAgreeScript(),
+          '/tukyakdel': (context) => const TukyakDelScript(),
+          '/chungchul': (context) => const ChungchulScript(),
+          '/chunchuldef': (context) => const ChungchulDefenceScript(),
+          '/admincheck': (context) => const AdminCheck(),
+          '/admin': (context) => const AdminPage(),
         },
       ),
     );
@@ -57,9 +77,9 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  int tabIndex = 1;
+  int tabIndex = 2;
   late TabController tabController =
-      TabController(length: 3, vsync: this, initialIndex: tabIndex);
+      TabController(length: 4, vsync: this, initialIndex: tabIndex);
   DateTime prebackpress = DateTime.now();
 
   @override
@@ -109,7 +129,8 @@ class _MainPageState extends State<MainPage>
                     TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
                 labelColor: Colors.black,
                 tabs: const [
-                  Tab(text: '각종 양식'),
+                  Tab(text: '각종양식'),
+                  Tab(text: '셀프학습'),
                   Tab(
                     text: '스크립트',
                   ),
@@ -123,6 +144,7 @@ class _MainPageState extends State<MainPage>
                 controller: tabController,
                 children: const [
                   VariousFormsPage(),
+                  SelfStudyPage(),
                   ScriptForProduct(),
                   Custom_viewtile(),
                 ],
@@ -132,5 +154,22 @@ class _MainPageState extends State<MainPage>
         ),
       ),
     );
+  }
+}
+
+Future AutoLogin() async {
+  const storage = FlutterSecureStorage();
+  unum = await storage.read(key: '저장된 사번');
+  uname = await storage.read(key: '저장된 이름');
+
+  try {
+    FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    DocumentSnapshot data =
+        await fireStore.collection('Center_userinfo').doc(unum).get();
+    if (data['uname'] == uname) {
+      isAuth = true;
+    }
+  } catch (e) {
+    isAuth = false;
   }
 }
