@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchuldefence_Script.dart';
+import 'package:styled_text/styled_text.dart';
 import 'Page0/scriptPages/easyrecord_Script.dart';
 import 'Page0/scriptPages/sangsulagree_Script.dart';
 import 'Page0/scriptPages/tukyakdel_Script.dart';
@@ -172,4 +173,18 @@ Future AutoLogin() async {
   } catch (e) {
     isAuth = false;
   }
+}
+
+Widget CustomText(String text, TextAlign textalign, int fontsize) {
+  return StyledText(
+    text: text,
+    textAlign: textalign,
+    style: TextStyle(
+        fontSize: fontsize.sp, color: Colors.black, fontFamily: 'customfont'),
+    tags: {
+      'b': StyledTextTag(style: const TextStyle(fontWeight: FontWeight.bold)),
+      'cr': StyledTextTag(style: const TextStyle(color: Colors.red)),
+      'cb': StyledTextTag(style: TextStyle(color: Colors.blue[700])),
+    },
+  );
 }
