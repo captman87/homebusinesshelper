@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable, non_constant_identifier_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
@@ -31,15 +30,10 @@ String? uname;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.removeAfter(initialization);
   await Firebase.initializeApp();
   FirebaseAuth.instance.signInAnonymously();
   await AutoLogin();
   runApp(const App());
-}
-
-void initialization(BuildContext context) async {
-  await Future.delayed(const Duration(seconds: 1));
 }
 
 class App extends StatelessWidget {

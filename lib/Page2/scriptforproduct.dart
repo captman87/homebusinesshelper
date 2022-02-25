@@ -261,7 +261,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
               textAlign: TextAlign.start,
               maxLines: 100,
               style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontFamily: 'customfont'),
               tags: {
@@ -335,7 +335,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
               textAlign: TextAlign.start,
               maxLines: 100,
               style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontFamily: 'customfont'),
               tags: {
@@ -409,7 +409,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
               textAlign: TextAlign.start,
               maxLines: 100,
               style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontFamily: 'customfont'),
               tags: {
@@ -483,7 +483,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
               textAlign: TextAlign.start,
               maxLines: 100,
               style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontFamily: 'customfont'),
               tags: {
@@ -557,7 +557,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
               textAlign: TextAlign.start,
               maxLines: 100,
               style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontFamily: 'customfont'),
               tags: {
