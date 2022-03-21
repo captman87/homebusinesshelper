@@ -44,7 +44,7 @@ class _AdminCheckState extends State<AdminCheck> {
                   const Padding(padding: EdgeInsets.only(top: 50)),
                   ElevatedButton(
                     onPressed: () {
-                      if (_adminCheckController.text == '12345678') {
+                      if (_adminCheckController.text == '19871987') {
                         Navigator.pushReplacementNamed(context, '/admin');
                       } else {
                         Alert(
