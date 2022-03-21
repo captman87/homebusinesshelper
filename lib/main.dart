@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable, non_constant_identifier_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
@@ -27,12 +29,38 @@ double appbarheight = 80.w;
 bool isAuth = false;
 String? unum;
 String? uname;
+String appid = 'ca-app-pub-1857986583198272/6936827294';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseAuth.instance.signInAnonymously();
   await AutoLogin();
+
+  /// Replace your admob app open ad unit id
+  final appAppOpenAdUnitId = appid;
+
+  /// Init MobileAds and more configs
+  await MobileAds.instance.initialize().then((value) {
+    MobileAds.instance.updateRequestConfiguration(
+      //Add more configs
+      RequestConfiguration(
+          testDeviceIds: ['ef68e5f7-9367-4889-9ab8-d983abfd34b4']),
+    );
+  });
+
+  AdRequestAppOpen targetingInfo = AdRequestAppOpen(
+    keywords: <String>['baby', 'chocolate', 'money', '보험', 'AIA'],
+    contentUrl: 'https://naver.com',
+    nonPersonalizedAds: false,
+  );
+
+  /// Init App Open Ads
+  await FlutterAdmobAppOpen.instance.initialize(
+    appAppOpenAdUnitId: appAppOpenAdUnitId,
+    targetingInfo: targetingInfo,
+  );
+
   runApp(const App());
 }
 
@@ -105,7 +133,7 @@ class _MainPageState extends State<MainPage>
           preferredSize: Size.fromHeight(35.h),
           child: AppBar(
               title: Text(
-                'AIA생명 재택영업 도우미',
+                '재택의 달인',
                 style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont'),
               ),
               centerTitle: true,
@@ -121,7 +149,7 @@ class _MainPageState extends State<MainPage>
                 indicatorWeight: 2.5.w,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle:
-                    TextStyle(fontSize: 15.sp, fontFamily: 'customfont'),
+                    TextStyle(fontSize: 13.sp, fontFamily: 'customfont'),
                 labelColor: Colors.black,
                 tabs: const [
                   Tab(text: '각종양식'),
@@ -129,7 +157,7 @@ class _MainPageState extends State<MainPage>
                   Tab(
                     text: '스크립트',
                   ),
-                  Tab(text: '간편 U/W'),
+                  Tab(text: '간편U/W'),
                 ],
                 controller: tabController,
               ),
