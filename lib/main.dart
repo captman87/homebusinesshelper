@@ -1,7 +1,9 @@
-// ignore_for_file: must_be_immutable, non_constant_identifier_names
+// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_print, unused_field
+import 'dart:io';
+import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -29,30 +31,31 @@ double appbarheight = 80.w;
 bool isAuth = false;
 String? unum;
 String? uname;
-String appid = 'ca-app-pub-1857986583198272/6936827294';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
-  FirebaseAuth.instance.signInAnonymously();
+  await FirebaseAuth.instance.signInAnonymously();
   await AutoLogin();
+  await MobileAds.instance.initialize();
 
   /// Replace your admob app open ad unit id
-  final appAppOpenAdUnitId = appid;
+  final appAppOpenAdUnitId = FlutterAdmobAppOpen.testAppOpenAdId;
 
   /// Init MobileAds and more configs
   await MobileAds.instance.initialize().then((value) {
     MobileAds.instance.updateRequestConfiguration(
       //Add more configs
-      RequestConfiguration(
-          testDeviceIds: ['ef68e5f7-9367-4889-9ab8-d983abfd34b4']),
+      RequestConfiguration(testDeviceIds: []),
     );
   });
 
   AdRequestAppOpen targetingInfo = AdRequestAppOpen(
-    keywords: <String>['baby', 'chocolate', 'money', '보험', 'AIA'],
-    contentUrl: 'https://naver.com',
-    nonPersonalizedAds: false,
+    keywords: <String>['flutterio', 'beautiful apps'],
+    contentUrl: 'https://flutter.io',
+    nonPersonalizedAds: true,
   );
 
   /// Init App Open Ads
@@ -60,9 +63,11 @@ void main() async {
     appAppOpenAdUnitId: appAppOpenAdUnitId,
     targetingInfo: targetingInfo,
   );
-
   runApp(const App());
 }
+
+const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
+const int maxFailedLoadAttempts = 3;
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -104,6 +109,52 @@ class _MainPageState extends State<MainPage>
   late TabController tabController =
       TabController(length: 4, vsync: this, initialIndex: tabIndex);
   DateTime prebackpress = DateTime.now();
+
+  BannerAd? _anchoredAdaptiveAd;
+  bool _isLoaded = false;
+
+  InterstitialAd? _interstitialAd;
+  int _numInterstitialLoadAttempts = 0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadAd().then((value) => FlutterNativeSplash.remove());
+  }
+
+  Future<void> _loadAd() async {
+    // Get an AnchoredAdaptiveBannerAdSize before loading the ad.
+    final AnchoredAdaptiveBannerAdSize? size =
+        await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+            MediaQuery.of(context).size.width.truncate());
+
+    if (size == null) {
+      return;
+    }
+
+    _anchoredAdaptiveAd = BannerAd(
+      // TODO: replace these test ad units with your own ad unit.
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-3940256099942544/6300978111' //Test ad ID
+          : 'ca-app-pub-1857986583198272/2050907098', // My ad ID
+      size: size,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (Ad ad) {
+          setState(() {
+            // When the ad is loaded, get the ad size and use it to set
+            // the height of the ad container.
+            _anchoredAdaptiveAd = ad as BannerAd;
+            _isLoaded = true;
+          });
+        },
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          ad.dispose();
+        },
+      ),
+    );
+    return _anchoredAdaptiveAd?.load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,10 +224,22 @@ class _MainPageState extends State<MainPage>
                 ],
               ),
             ),
+            // Container(
+            //   width: _anchoredAdaptiveAd!.size.width.toDouble(),
+            //   height: _anchoredAdaptiveAd!.size.height.toDouble(),
+            //   child: AdWidget(ad: _anchoredAdaptiveAd!),
+            // )
+            CustomContainer(_anchoredAdaptiveAd)
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _anchoredAdaptiveAd?.dispose();
   }
 }
 
@@ -209,4 +272,17 @@ Widget CustomText(String text, TextAlign textalign, int fontsize) {
       'cb': StyledTextTag(style: TextStyle(color: Colors.blue[700])),
     },
   );
+}
+
+Widget CustomContainer(BannerAd? _anchoredAdaptiveAd) {
+  if (_anchoredAdaptiveAd?.size.height == null) {
+    return Container(
+      color: Colors.red,
+    );
+  } else {
+    return SizedBox(
+        width: _anchoredAdaptiveAd?.size.width.toDouble(),
+        height: _anchoredAdaptiveAd?.size.height.toDouble(),
+        child: AdWidget(ad: _anchoredAdaptiveAd!));
+  }
 }
