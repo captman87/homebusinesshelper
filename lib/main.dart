@@ -42,7 +42,9 @@ void main() async {
   await MobileAds.instance.initialize();
 
   /// Replace your admob app open ad unit id
-  final appAppOpenAdUnitId = FlutterAdmobAppOpen.testAppOpenAdId;
+  final appAppOpenAdUnitId = Platform.isAndroid
+      ? FlutterAdmobAppOpen.testAppOpenAdId //Test ad ID
+      : 'ca-app-pub-1857986583198272/6936827294'; //My ad ID
 
   /// Init MobileAds and more configs
   await MobileAds.instance.initialize().then((value) {
@@ -52,10 +54,9 @@ void main() async {
     );
   });
 
-  AdRequestAppOpen targetingInfo = AdRequestAppOpen(
-    keywords: <String>['flutterio', 'beautiful apps'],
-    contentUrl: 'https://flutter.io',
-    nonPersonalizedAds: true,
+  AdRequestAppOpen targetingInfo = const AdRequestAppOpen(
+    keywords: <String>['재택', '금융', '육아', '영업'],
+    nonPersonalizedAds: false,
   );
 
   /// Init App Open Ads
@@ -113,9 +114,6 @@ class _MainPageState extends State<MainPage>
   BannerAd? _anchoredAdaptiveAd;
   bool _isLoaded = false;
 
-  InterstitialAd? _interstitialAd;
-  int _numInterstitialLoadAttempts = 0;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -133,12 +131,11 @@ class _MainPageState extends State<MainPage>
     }
 
     _anchoredAdaptiveAd = BannerAd(
-      // TODO: replace these test ad units with your own ad unit.
       adUnitId: Platform.isAndroid
           ? 'ca-app-pub-3940256099942544/6300978111' //Test ad ID
           : 'ca-app-pub-1857986583198272/2050907098', // My ad ID
       size: size,
-      request: AdRequest(),
+      request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           setState(() {
