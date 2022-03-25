@@ -107,10 +107,7 @@ class _ScriptForProductState extends State<ScriptForProduct>
         )),
       ),
       SizedBox(
-        height: 10.h,
-      ),
-      SizedBox(
-        height: 10.h,
+        height: 20.h,
       ),
       Container(
         margin: EdgeInsets.only(left: 10.w, right: 10.w),

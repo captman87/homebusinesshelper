@@ -31,6 +31,17 @@ double appbarheight = 80.w;
 bool isAuth = false;
 String? unum;
 String? uname;
+const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
+
+/// Replace your admob app open ad unit id
+final appAppOpenAdUnitId = Platform.isAndroid
+    ? FlutterAdmobAppOpen.testAppOpenAdId //Test ad ID
+    : 'ca-app-pub-1857986583198272/6936827294'; //My ad ID
+
+AdRequestAppOpen targetingInfo = const AdRequestAppOpen(
+  keywords: <String>['재택', '금융', '육아', '영업'],
+  nonPersonalizedAds: true,
+);
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -39,36 +50,15 @@ void main() async {
   await Firebase.initializeApp();
   await FirebaseAuth.instance.signInAnonymously();
   await AutoLogin();
-  await MobileAds.instance.initialize();
-
-  /// Replace your admob app open ad unit id
-  final appAppOpenAdUnitId = Platform.isAndroid
-      ? FlutterAdmobAppOpen.testAppOpenAdId //Test ad ID
-      : 'ca-app-pub-1857986583198272/6936827294'; //My ad ID
-
-  /// Init MobileAds and more configs
   await MobileAds.instance.initialize().then((value) {
     MobileAds.instance.updateRequestConfiguration(
       //Add more configs
-      RequestConfiguration(testDeviceIds: []),
+      RequestConfiguration(testDeviceIds: [testDevice]),
     );
   });
 
-  AdRequestAppOpen targetingInfo = const AdRequestAppOpen(
-    keywords: <String>['재택', '금융', '육아', '영업'],
-    nonPersonalizedAds: false,
-  );
-
-  /// Init App Open Ads
-  await FlutterAdmobAppOpen.instance.initialize(
-    appAppOpenAdUnitId: appAppOpenAdUnitId,
-    targetingInfo: targetingInfo,
-  );
   runApp(const App());
 }
-
-const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
-const int maxFailedLoadAttempts = 3;
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -115,9 +105,23 @@ class _MainPageState extends State<MainPage>
   bool _isLoaded = false;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadAd().then((value) => FlutterNativeSplash.remove());
+    adsAfterSplash();
+  }
+
+  void adsAfterSplash() async {
+    await FlutterAdmobAppOpen.instance
+        .initialize(
+            appAppOpenAdUnitId: appAppOpenAdUnitId,
+            targetingInfo: targetingInfo)
+        .then((value) => _loadAd())
+        .then((value) => FlutterNativeSplash.remove());
   }
 
   Future<void> _loadAd() async {
@@ -139,8 +143,6 @@ class _MainPageState extends State<MainPage>
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           setState(() {
-            // When the ad is loaded, get the ad size and use it to set
-            // the height of the ad container.
             _anchoredAdaptiveAd = ad as BannerAd;
             _isLoaded = true;
           });
@@ -221,11 +223,6 @@ class _MainPageState extends State<MainPage>
                 ],
               ),
             ),
-            // Container(
-            //   width: _anchoredAdaptiveAd!.size.width.toDouble(),
-            //   height: _anchoredAdaptiveAd!.size.height.toDouble(),
-            //   child: AdWidget(ad: _anchoredAdaptiveAd!),
-            // )
             CustomContainer(_anchoredAdaptiveAd)
           ],
         ),
