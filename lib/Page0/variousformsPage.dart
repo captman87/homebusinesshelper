@@ -114,29 +114,6 @@ class VariousFormsPage extends StatelessWidget {
                   ],
                 ),
                 const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.green[800],
-                        fixedSize: Size(330.w, 40.h)),
-                    onPressed: () {},
-                    child: Text(
-                      '아웃콜 요청 접수',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
-                    )),
-                const Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.green[400],
-                        fixedSize: Size(330.w, 40.h)),
-                    onPressed: () {},
-                    child: Text(
-                      '청약철회 요청 접수',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 16.sp, fontFamily: 'customfont'),
-                    )),
               ],
             ),
           ],

@@ -23,7 +23,6 @@ class _ScriptForProductState extends State<ScriptForProduct>
     '원스톱 100세 암보험 III',
     '백세시대 꼭하나 건강보험',
     '뉴 이 좋은 치아보험',
-    '든든 튼튼 치매보험',
   ];
 
   bool isVisible = true;

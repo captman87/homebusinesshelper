@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchuldefence_Script.dart';
+import 'package:homebusinesshelper/Page1/CancerPages/SelfStudy_ClickedPage.dart';
 import 'package:styled_text/styled_text.dart';
 import 'Page0/scriptPages/easyrecord_Script.dart';
 import 'Page0/scriptPages/sangsulagree_Script.dart';
@@ -49,13 +50,13 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
   await FirebaseAuth.instance.signInAnonymously();
-  await AutoLogin();
   await MobileAds.instance.initialize().then((value) {
     MobileAds.instance.updateRequestConfiguration(
       //Add more configs
       RequestConfiguration(testDeviceIds: [testDevice]),
     );
   });
+  await AutoLogin().then((value) => FlutterNativeSplash.remove());
 
   runApp(const App());
 }
@@ -82,6 +83,7 @@ class App extends StatelessWidget {
           '/chunchuldef': (context) => const ChungchulDefenceScript(),
           '/admincheck': (context) => const AdminCheck(),
           '/admin': (context) => const AdminPage(),
+          '/0': (context) => const SelfStudy_ClickedPage(),
         },
       ),
     );
@@ -105,23 +107,15 @@ class _MainPageState extends State<MainPage>
   bool _isLoaded = false;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     adsAfterSplash();
   }
 
   void adsAfterSplash() async {
-    await FlutterAdmobAppOpen.instance
-        .initialize(
-            appAppOpenAdUnitId: appAppOpenAdUnitId,
-            targetingInfo: targetingInfo)
-        .then((value) => _loadAd())
-        .then((value) => FlutterNativeSplash.remove());
+    await FlutterAdmobAppOpen.instance.initialize(
+        appAppOpenAdUnitId: appAppOpenAdUnitId, targetingInfo: targetingInfo);
+    await _loadAd();
   }
 
   Future<void> _loadAd() async {

@@ -22,5 +22,4 @@ final Map<String, dynamic> scriptListFromEachProduct = {
     dentalDescription_1_3,
     dentalClosing_1
   ],
-  '치매 버젼 1': ['도입1', '상품설명1', '클로징1'],
 };
