@@ -91,16 +91,20 @@ class _ScriptForProductState extends State<ScriptForProduct>
           onChanged: (value) {
             setState(() {
               selectedValue1 = value as String;
-              beginning = scriptListFromEachProduct[selectedValue1][0];
-              description[0] = scriptListFromEachProduct[selectedValue1][1];
-              description[1] = scriptListFromEachProduct[selectedValue1][2];
+              beginning =
+                  scriptListFromEachProduct[selectedValue1][0].toString();
+              description[0] =
+                  scriptListFromEachProduct[selectedValue1][1].toString();
+              description[1] =
+                  scriptListFromEachProduct[selectedValue1][2].toString();
               if (scriptListFromEachProduct[selectedValue1][3] == '') {
                 isVisible = false;
               } else if (scriptListFromEachProduct[selectedValue1][3] != '') {
                 isVisible = true;
-                description[2] = scriptListFromEachProduct[selectedValue1][3];
+                description[2] =
+                    scriptListFromEachProduct[selectedValue1][3].toString();
               }
-              closing = scriptListFromEachProduct[selectedValue1][4];
+              closing = scriptListFromEachProduct[selectedValue1][4].toString();
             });
           },
         )),

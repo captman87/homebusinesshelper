@@ -11,6 +11,8 @@ List<String> items = [
   '치매,LTC\n바로가기',
   '당뇨\n바로가기',
   '사망\n바로가기',
+];
+List<String> cancer_items = [
   '암 기본 용어',
   '암의 병기 구분',
   '암을 치료하는 3가지 방법',
@@ -34,18 +36,24 @@ List<String> items = [
   '아버지암에서 형님암으로, 전립선암',
   '침묵의 암, 간암',
   '은둔의 암, 췌장암',
+];
+List<String> heart_items = [
   '심장질환과 심혈관질환',
   '관상동맥과 죽상경화',
   '좁아지면 협심증,막히면 심근경색',
   '협심증이 더 많고, 심근경색이 더 치명적',
   '갱년기 혈관을 지켜라!',
   '막히면 돌아가고, 좁아지면 뚫어라!',
+];
+List<String> brain_items = [
   '중풍과 뇌졸중',
   '혈압 때문에 터지거나,혹 때문에 터지거나',
   '코일로 막거나, 클립으로 묶거나',
   '혈전이 혈관을 막는다',
   '뇌경색이 더 많고, 뇌출혈이 더 치명적!',
   '뇌출혈은 나이를 따지지 않는다!',
+];
+List<String> dimentia_items = [
   '가족이 짊어지고 가는 치매',
   '치매는 질병이 아니다!',
   '알츠하이머 치매는 서서히!',
@@ -53,10 +61,14 @@ List<String> items = [
   '노인장기요양보험과 간병보험',
   '노인과 알파치뇌',
   '아내의 간병을 준비하라!',
+];
+List<String> diabetes_items = [
   '당이 넘쳐나는 당뇨병',
   '소아당뇨, 비만당뇨, 마른당뇨',
   '고3친구를 조심하라!',
   '머리부터 발끝까지 합병증!',
+];
+List<String> death_items = [
   '상사보다 병사',
   '남자는 일찍, 여자는 늦게!',
   '남녀유별 사망원인(남)',
@@ -78,15 +90,13 @@ class _SelfStudyPageState extends State<SelfStudyPage> {
       return GridView.count(
         crossAxisCount: 3,
         children: List<Widget>.generate(
-          items.length,
+          6,
           (index) => Container(
-            margin: EdgeInsets.all(4.h),
+            margin: EdgeInsets.all(8.h),
             child: OutlinedButton(
               onPressed: () {
                 indexNum = index;
-                if (indexNum > 5) {
-                  Navigator.pushNamed(context, '/0');
-                } else if (indexNum < 6) {}
+                Navigator.pushNamed(context, '/0');
               },
               style: CustomButtonStyle(index),
               child: Text(
@@ -108,39 +118,21 @@ class _SelfStudyPageState extends State<SelfStudyPage> {
 ButtonStyle CustomButtonStyle(int index) {
   if (index == 0) {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.red[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.red[400]));
   } else if (index == 1) {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.green[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.green[400]));
   } else if (index == 2) {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.blue[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.blue[400]));
   } else if (index == 3) {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.pink[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.pink[400]));
   } else if (index == 4) {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.orange[700]));
-  } else if (index == 5) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.deepPurple[700]));
-  } else if (index < 23) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.red[700]));
-  } else if (index < 29) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.green[700]));
-  } else if (index < 35) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.blue[700]));
-  } else if (index < 42) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.pink[700]));
-  } else if (index < 46) {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.orange[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.orange[400]));
   } else {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.deepPurple[700]));
+        backgroundColor: MaterialStateProperty.all(Colors.deepPurple[400]));
   }
 }

@@ -108,10 +108,10 @@ class _AdminPageState extends State<AdminPage> {
                   controller: _unumController,
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      labelText: '사번 끝 6자리',
+                      labelText: '사번',
                       labelStyle:
                           TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
-                  maxLength: 6,
+                  maxLength: 9,
                   keyboardType: TextInputType.number,
                   style: TextStyle(fontSize: 17.sp, fontFamily: 'customfont'),
                 ),
@@ -147,7 +147,7 @@ class CustomElevatedButton {
       BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        if (_unumController.text.length == 6 &&
+        if (_unumController.text.length == 9 &&
             _unameController.text.isNotEmpty) {
           try {
             fireStore
@@ -233,7 +233,7 @@ class CustomElevatedButton {
       BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        if (_unumController.text.length == 6 &&
+        if (_unumController.text.length == 9 &&
             _unameController.text.isNotEmpty) {
           try {
             fireStore

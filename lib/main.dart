@@ -9,15 +9,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchul_Script.dart';
 import 'package:homebusinesshelper/Page0/scriptPages/chunchuldefence_Script.dart';
-import 'package:homebusinesshelper/Page1/CancerPages/SelfStudy_ClickedPage.dart';
 import 'package:styled_text/styled_text.dart';
 import 'Page0/scriptPages/easyrecord_Script.dart';
 import 'Page0/scriptPages/sangsulagree_Script.dart';
 import 'Page0/scriptPages/tukyakdel_Script.dart';
 import 'Page0/scriptPages/budambo_Script.dart';
 import 'Page0/variousformsPage.dart';
+import 'Page1/StudyPages/SelfStudy_ClickedPage.dart';
+import 'Page1/StudyPages/SelfStudy_ListPage.dart';
 import 'Page1/selfstudyPage.dart';
 import 'Page2/scriptforproduct.dart';
+import 'Page2/scripts/scripts.dart';
 import 'Page3/d_list.dart';
 import 'Page3/init_d_list.dart';
 import 'Page3/viewtile.dart';
@@ -26,6 +28,7 @@ import 'auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+FlutterSecureStorage storage = const FlutterSecureStorage();
 List<Map<String, dynamic>> json = dList;
 DiseaseList list = DiseaseList.fromJson(json);
 double appbarheight = 80.w;
@@ -33,6 +36,7 @@ bool isAuth = false;
 String? unum;
 String? uname;
 const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
+String? version = '1.0.0';
 
 /// Replace your admob app open ad unit id
 final appAppOpenAdUnitId = Platform.isAndroid
@@ -56,7 +60,9 @@ void main() async {
       RequestConfiguration(testDeviceIds: [testDevice]),
     );
   });
-  await AutoLogin().then((value) => FlutterNativeSplash.remove());
+  await AutoLogin()
+      .then((value) => CheckScriptUpdate())
+      .then((value) => FlutterNativeSplash.remove());
 
   runApp(const App());
 }
@@ -83,7 +89,8 @@ class App extends StatelessWidget {
           '/chunchuldef': (context) => const ChungchulDefenceScript(),
           '/admincheck': (context) => const AdminCheck(),
           '/admin': (context) => const AdminPage(),
-          '/0': (context) => const SelfStudy_ClickedPage(),
+          '/1': (context) => const SelfStudy_ClickedPage(),
+          '/0': (context) => const SelfStudy_List()
         },
       ),
     );
@@ -232,7 +239,6 @@ class _MainPageState extends State<MainPage>
 }
 
 Future AutoLogin() async {
-  const storage = FlutterSecureStorage();
   unum = await storage.read(key: '저장된 사번');
   uname = await storage.read(key: '저장된 이름');
 
@@ -246,6 +252,82 @@ Future AutoLogin() async {
   } catch (e) {
     isAuth = false;
   }
+}
+
+Future CheckScriptUpdate() async {
+  try {
+    version = await storage.read(key: '버전');
+    FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    DocumentSnapshot _data =
+        await fireStore.collection('Center_scripts').doc('version').get();
+    if (_data['_version'] == version) {
+      print('같다');
+      cancerDoip_1 = await storage.read(key: 'cancerDoip_1');
+      cancerDescription_1_1 = await storage.read(key: 'cancerDescription_1_1');
+      cancerDescription_1_2 = await storage.read(key: 'cancerDescription_1_2');
+      cancerDescription_1_3 = await storage.read(key: 'cancerDescription_1_3');
+      cancerClosing_1 = await storage.read(key: 'cancerClosing_1');
+    } else if (_data['_version'] != version) {
+      print('다르다');
+      version = _data['_version'];
+      storage.write(key: '버전', value: version);
+      FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+      DocumentSnapshot data =
+          await _fireStore.collection('Center_scripts').doc('Scripts').get();
+
+      cancerDoip_1 = data['cancerDoip_1'].toString().replaceAll('\\n', '\n');
+      cancerDescription_1_1 =
+          data['cancerDescription_1_1'].toString().replaceAll('\\n', '\n');
+      cancerDescription_1_2 =
+          data['cancerDescription_1_2'].toString().replaceAll('\\n', '\n');
+      cancerDescription_1_3 =
+          data['cancerDescription_1_3'].toString().replaceAll('\\n', '\n');
+      cancerClosing_1 =
+          data['cancerClosing_1'].toString().replaceAll('\\n', '\n');
+      await storage.write(key: 'cancerDoip_1', value: cancerDoip_1);
+      await storage.write(
+          key: 'cancerDescription_1_1', value: cancerDescription_1_1);
+      await storage.write(
+          key: 'cancerDescription_1_2', value: cancerDescription_1_2);
+      await storage.write(
+          key: 'cancerDescription_1_3', value: cancerDescription_1_3);
+      await storage.write(key: 'cancerClosing_1', value: cancerClosing_1);
+      dentalDoip_1 = data['dentalDoip_1'].toString().replaceAll('\\n', '\n');
+      dentalDescription_1_1 =
+          data['dentalDescription_1_1'].toString().replaceAll('\\n', '\n');
+      dentalDescription_1_2 =
+          data['dentalDescription_1_2'].toString().replaceAll('\\n', '\n');
+      dentalDescription_1_3 =
+          data['dentalDescription_1_3'].toString().replaceAll('\\n', '\n');
+      dentalClosing_1 =
+          data['dentalClosing_1'].toString().replaceAll('\\n', '\n');
+      await storage.write(key: 'dentalDoip_1', value: dentalDoip_1);
+      await storage.write(
+          key: 'dentalDescription_1_1', value: dentalDescription_1_1);
+      await storage.write(
+          key: 'dentalDescription_1_2', value: dentalDescription_1_2);
+      await storage.write(
+          key: 'dentalDescription_1_3', value: dentalDescription_1_3);
+      await storage.write(key: 'dentalClosing_1', value: dentalClosing_1);
+      gungangDoip_1 = data['gungangDoip_1'].toString().replaceAll('\\n', '\n');
+      gungangDescription_1_1 =
+          data['gungangDescription_1_1'].toString().replaceAll('\\n', '\n');
+      gungangDescription_1_2 =
+          data['gungangDescription_1_2'].toString().replaceAll('\\n', '\n');
+      gungangDescription_1_3 =
+          data['gungangDescription_1_3'].toString().replaceAll('\\n', '\n');
+      gungangClosing_1 =
+          data['gungangClosing_1'].toString().replaceAll('\\n', '\n');
+      await storage.write(key: 'gungangDoip_1', value: gungangDoip_1);
+      await storage.write(
+          key: 'gungangDescription_1_1', value: gungangDescription_1_1);
+      await storage.write(
+          key: 'gungangDescription_1_2', value: gungangDescription_1_2);
+      await storage.write(
+          key: 'gungangDescription_1_3', value: gungangDescription_1_3);
+      await storage.write(key: 'gungangClosing_1', value: gungangClosing_1);
+    }
+  } catch (e) {}
 }
 
 Widget CustomText(String text, TextAlign textalign, int fontsize) {

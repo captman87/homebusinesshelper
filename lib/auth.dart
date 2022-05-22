@@ -37,10 +37,10 @@ class _GetAuthState extends State<GetAuth> {
                   controller: _unumController,
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      labelText: '사번 끝 6자리',
+                      labelText: '사번',
                       labelStyle:
                           TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
-                  maxLength: 6,
+                  maxLength: 9,
                   keyboardType: TextInputType.number,
                   style: TextStyle(fontSize: 17.sp, fontFamily: 'customfont'),
                 ),
@@ -68,6 +68,7 @@ class _GetAuthState extends State<GetAuth> {
                             .collection('Center_userinfo')
                             .doc(_unumController.text)
                             .get();
+
                         if (data['uname'] == _unameController.text) {
                           const storage = FlutterSecureStorage();
                           await storage.write(
@@ -106,7 +107,7 @@ class _GetAuthState extends State<GetAuth> {
                         Alert(
                           context: context,
                           type: AlertType.info,
-                          title: '사번 끝 6자리 를 다시 확인 해주세요.',
+                          title: '사번을 다시 확인 해주세요.',
                           buttons: [
                             DialogButton(
                               child: Text(
