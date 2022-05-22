@@ -1,5 +1,4 @@
-// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_print, unused_field
-import 'dart:io';
+// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_print, unused_field, prefer_const_declarations, empty_catches
 import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,9 +38,10 @@ const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
 String? version = '1.0.0';
 
 /// Replace your admob app open ad unit id
-final appAppOpenAdUnitId = Platform.isAndroid
-    ? FlutterAdmobAppOpen.testAppOpenAdId //Test ad ID
-    : 'ca-app-pub-1857986583198272/6936827294'; //My ad ID
+final appAppOpenAdUnitId = 'ca-app-pub-1857986583198272/6936827294';
+// Platform.isAndroid
+// ? FlutterAdmobAppOpen.testAppOpenAdId //Test ad ID
+// : 'ca-app-pub-1857986583198272/6936827294'; //My ad ID
 
 AdRequestAppOpen targetingInfo = const AdRequestAppOpen(
   keywords: <String>['재택', '금융', '육아', '영업'],
@@ -136,9 +136,10 @@ class _MainPageState extends State<MainPage>
     }
 
     _anchoredAdaptiveAd = BannerAd(
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111' //Test ad ID
-          : 'ca-app-pub-1857986583198272/2050907098', // My ad ID
+      adUnitId: 'ca-app-pub-1857986583198272/2050907098',
+      // Platform.isAndroid
+      //     ? 'ca-app-pub-3940256099942544/6300978111' //Test ad ID
+      //     : 'ca-app-pub-1857986583198272/2050907098', // My ad ID
       size: size,
       request: const AdRequest(),
       listener: BannerAdListener(
