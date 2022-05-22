@@ -184,7 +184,7 @@ class _MainPageState extends State<MainPage>
           preferredSize: Size.fromHeight(35.h),
           child: AppBar(
               title: Text(
-                '재택의 달인',
+                'TM 의 달인',
                 style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont'),
               ),
               centerTitle: true,
@@ -267,6 +267,21 @@ Future CheckScriptUpdate() async {
       cancerDescription_1_2 = await storage.read(key: 'cancerDescription_1_2');
       cancerDescription_1_3 = await storage.read(key: 'cancerDescription_1_3');
       cancerClosing_1 = await storage.read(key: 'cancerClosing_1');
+
+      dentalDoip_1 = await storage.read(key: 'dentalDoip_1');
+      dentalDescription_1_1 = await storage.read(key: 'dentalDescription_1_1');
+      dentalDescription_1_2 = await storage.read(key: 'dentalDescription_1_2');
+      dentalDescription_1_3 = await storage.read(key: 'dentalDescription_1_3');
+      dentalClosing_1 = await storage.read(key: 'dentalClosing_1');
+
+      gungangDoip_1 = await storage.read(key: 'gungangDoip_1');
+      gungangDescription_1_1 =
+          await storage.read(key: 'gungangDescription_1_1');
+      gungangDescription_1_2 =
+          await storage.read(key: 'gungangDescription_1_2');
+      gungangDescription_1_3 =
+          await storage.read(key: 'gungangDescription_1_3');
+      gungangClosing_1 = await storage.read(key: 'gungangClosing_1');
     } else if (_data['_version'] != version) {
       print('다르다');
       version = _data['_version'];
