@@ -89,16 +89,18 @@ ButtonStyle CustomButtonStyle_2(int index) {
 
 List<String> Item_Select(int indexNum) {
   if (indexNum == 0) {
-    return cancer_items;
+    return narration_items;
   } else if (indexNum == 1) {
-    return heart_items;
+    return cancer_items;
   } else if (indexNum == 2) {
-    return brain_items;
+    return heart_items;
   } else if (indexNum == 3) {
-    return dimentia_items;
+    return brain_items;
   } else if (indexNum == 4) {
-    return diabetes_items;
+    return dimentia_items;
   } else if (indexNum == 5) {
+    return diabetes_items;
+  } else if (indexNum == 6) {
     return death_items;
   }
   return cancer_items;
@@ -106,16 +108,18 @@ List<String> Item_Select(int indexNum) {
 
 int Items_list(int index) {
   if (index == 0) {
-    return cancer_items.length;
+    return narration_items.length;
   } else if (index == 1) {
-    return heart_items.length;
+    return cancer_items.length;
   } else if (index == 2) {
-    return brain_items.length;
+    return heart_items.length;
   } else if (index == 3) {
-    return dimentia_items.length;
+    return brain_items.length;
   } else if (index == 4) {
-    return diabetes_items.length;
+    return dimentia_items.length;
   } else if (index == 5) {
+    return diabetes_items.length;
+  } else if (index == 6) {
     return death_items.length;
   }
   return 0;

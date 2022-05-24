@@ -123,9 +123,9 @@ class VariousFormsPage extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, '/admincheck');
         },
-        child: const Text('Admin'),
         elevation: 0.0,
         backgroundColor: Colors.red[600],
+        child: const Text('Admin'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );

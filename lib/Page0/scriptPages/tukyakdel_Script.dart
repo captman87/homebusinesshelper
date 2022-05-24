@@ -134,6 +134,8 @@ class TukyakDelScript extends StatelessWidget {
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2.5, color: Colors.red)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -152,8 +154,6 @@ class TukyakDelScript extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 10.h)),
                 ],
               ),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2.5, color: Colors.red)),
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(

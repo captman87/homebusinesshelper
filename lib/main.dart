@@ -1,4 +1,8 @@
-// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_print, unused_field, prefer_const_declarations, empty_catches
+// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_print, unused_field, prefer_const_declarations, empty_catches, no_leading_underscores_for_local_identifiers
+import 'dart:math';
+
+import 'package:extended_image/extended_image.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,6 +40,7 @@ String? unum;
 String? uname;
 const String testDevice = 'ef68e5f7-9367-4889-9ab8-d983abfd34b4';
 String? version = '1.0.0';
+String? img;
 
 /// Replace your admob app open ad unit id
 final appAppOpenAdUnitId = 'ca-app-pub-1857986583198272/6936827294';
@@ -155,6 +160,256 @@ class _MainPageState extends State<MainPage>
       ),
     );
     return _anchoredAdaptiveAd?.load();
+  }
+
+  @override
+  void initState() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+          context: context,
+          builder: (context) => StatefulBuilder(builder: (context, setState) {
+                return AlertDialog(
+                  contentPadding: const EdgeInsets.all(20),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  content: DailyRandomComments(),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: CustomStyledText("<cb>확인</cb>", 20))
+                  ],
+                );
+              }));
+    });
+    super.initState();
+  }
+
+  Widget DailyRandomComments() {
+    int rand = Random().nextInt(26);
+    int rand2 = Random().nextInt(3);
+    if (rand2 == 0) {
+      img = 'assets/images/happyClova.png';
+    } else if (rand2 == 1) {
+      img = 'assets/images/flower.png';
+    } else if (rand2 == 2) {
+      img = 'assets/images/luckyday.png';
+    }
+    switch (rand) {
+      case 0:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n자신의 행동에 대해 너무 소심하고 까다롭게 고민하지 말라.\n모든 인생은 실험이다.\n더 많이 실험할수록 더 나아진다\n\n-랄프 왈도 에머슨',
+                17),
+          ],
+        );
+      case 1:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n명성을 쌓는데는 20년이라는 세월이 걸리며\n명성을 망가뜨리는데는 채 5분도 걸리지 않는다.\n그것을 명심한다면 당신의 행동이 달라질 것이다.\n\n-워런 버핏',
+                17),
+          ],
+        );
+      case 2:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n성공은 영원하지 않고\n실패는 치명적이지 않다\n\n-마이크 디트카', 17),
+          ],
+        );
+      case 3:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n멈추지 말고 한 가지 목표를 향해 달려가라\n그것이 성공의 비결이다\n\n-안나 파블로바', 17),
+          ],
+        );
+      case 4:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n당신의 행복은 무엇이 당신의 영혼을 노래하게 하는가에 의해 결정된다.\n\n-낸시 설리번', 17),
+          ],
+        );
+      case 5:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n사람이 인생에서 가장 후회하는 어리석은 행동은\n기회가 있을 때 저지르지 않은 행동이다.\n\n-헬렌 롤랜드',
+                17),
+          ],
+        );
+      case 6:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n용기가 나지 않을 때, 할 수 있는 가장 용기 있는 행동은\n용기를 천명하고 그대로 행동하는 것이다\n\n-코라 헤리스',
+                17),
+          ],
+        );
+      case 7:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n오랫동안 꿈을 그려온 사람은 마침내 그 꿈을 닮아 간다\n\n-앙드레 말로', 17),
+          ],
+        );
+      case 8:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n신중히 생각할 시간을 가져라\n그러나 행동할 때가 오면 생각을 멈추고 뛰어들어라\n\n-나폴레옹 보나파르트',
+                17),
+          ],
+        );
+      case 9:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n경험은 인간에게 우연히 일어나는 일이 아니라\n일어나는 일에 대해 인간이 하는 행동이다\n\n-올더스 헉슬리',
+                17),
+          ],
+        );
+      case 10:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n경험은 실수를 거듭해야만 서서히 알게 된다\n\n-J.A 푸르드', 17),
+          ],
+        );
+      case 11:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n최고가 되기 위해 가진 모든 것을 활용하세요\n바로 이 것이 현재 제가 사는 방식입니다\n\n-오프라 윈프리',
+                17),
+          ],
+        );
+      case 12:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n신은 우리에게 성공할 것을 요구하지 않는다\n단지 우리가 노력할 것을 요구할 뿐이다\n\n-마더 테레사',
+                17),
+          ],
+        );
+      case 13:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n행복이란 성취의 기쁨과 창조적 노력이 주는 쾌감 속에 있다\n\n-프랭클린D.루즈벨트', 17),
+          ],
+        );
+      case 14:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n고통 뒤의 즐거움은 달콤하다\n\n-존 드라이든', 17),
+          ],
+        );
+      case 15:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n실패는 하나의 교훈이며 상황을 호전시킬 수 있는 첫걸음이다\n\n-필립스', 17),
+          ],
+        );
+      case 16:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n승리하면 조금은 배울 수 있고\n패배하면 모든것을 알게된다\n\n-크리스티 매튜스', 17),
+          ],
+        );
+      case 17:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n당신이 할 수 있다고 생각하면 할 수 있고\n할 수 없다고 생각하면 할 수 없다\n\n-헨리 포드',
+                17),
+          ],
+        );
+      case 18:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n지식만으로는 사람으로 성장할 수 없다\n사람은 마음이 성장해야 한다\n\n-조셉 파커', 17),
+          ],
+        );
+      case 19:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n오늘을 잡아라\n오늘에 감사해라\n사랑하고 일하고 뛰어놀고 하늘의 별을 올려다 볼 기회가 주어졌음에\n\n-헨리 반다이크',
+                17),
+          ],
+        );
+      case 20:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n웃음 없는 하루는 낭비한 하루다\n\n-찰리 채플린', 17),
+          ],
+        );
+      case 21:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n만족은 결과가 아니라 과정에서 온다\n\n-제임스 딘', 17),
+          ],
+        );
+      case 22:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n자신의 능력을 믿어야 한다.\n그리고 끝까지 굳세게 밀고 나가라\n\n-로잘린 카터', 17),
+          ],
+        );
+      case 23:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n웃음 없는 하루는 낭비한 하루다\n\n-찰리 채플린', 17),
+          ],
+        );
+      case 24:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText(
+                '\n\n일이 즐거우면 인생은 낙원이다\n일이 의무에 불과하면 인생은 지옥이다\n\n-막심 고리키', 17),
+          ],
+        );
+      case 25:
+        return Column(
+          children: [
+            SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
+            CustomStyledText('\n\n시작이 반이다\n\n-아리스토 텔레스', 17),
+          ],
+        );
+    }
+    return Container();
   }
 
   @override

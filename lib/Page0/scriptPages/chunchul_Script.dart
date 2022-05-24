@@ -69,6 +69,8 @@ class ChungchulScript extends StatelessWidget {
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2.5, color: Colors.red)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,8 +80,6 @@ class ChungchulScript extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 10.h)),
                 ],
               ),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2.5, color: Colors.red)),
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(
@@ -129,6 +129,7 @@ class ChungchulScript extends StatelessWidget {
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(
+              decoration: BoxDecoration(color: Colors.blue[200]),
               child: Column(
                 children: [
                   CustomText('[계좌 납부 건]', TextAlign.center, 18),
@@ -138,10 +139,10 @@ class ChungchulScript extends StatelessWidget {
                       18),
                 ],
               ),
-              decoration: BoxDecoration(color: Colors.blue[200]),
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             Container(
+              decoration: BoxDecoration(color: Colors.yellow[200]),
               child: Column(
                 children: [
                   CustomText('[카드 납부 건]', TextAlign.center, 18),
@@ -151,7 +152,6 @@ class ChungchulScript extends StatelessWidget {
                       18),
                 ],
               ),
-              decoration: BoxDecoration(color: Colors.yellow[200]),
             ),
             Padding(padding: EdgeInsets.only(top: 10.h)),
             const Divider(

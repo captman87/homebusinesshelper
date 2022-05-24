@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+2
+version: 1.1.0+1
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
@@ -36,7 +36,7 @@ dependencies:
   convert: ^3.0.1
   flutter_screenutil: ^5.1.0
   dropdown_button2: ^1.0.7
-  styled_text: ^4.0.0+1
+  styled_text: ^5.1.0
   firebase_core: ^1.12.0
   firebase_auth: ^3.3.7
   cloud_firestore: ^3.1.7
@@ -45,7 +45,8 @@ dependencies:
   google_mobile_ads: ^0.13.3
   flutter_admob_app_open: ^1.1.1
   flutter_native_splash: ^2.1.1
-  extended_image: ^4.0.0
+  extended_image: ^6.2.1
+  new_version: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +57,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,7 +88,7 @@ flutter:
   fonts:
     - family: customfont
       fonts:
-        - asset: fonts/SANGJU Haerye.ttf
+        - asset: fonts/GodoM.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

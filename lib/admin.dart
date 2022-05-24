@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, non_constant_identifier_names
+// ignore_for_file: avoid_print, non_constant_identifier_names, library_private_types_in_public_api, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,6 +53,10 @@ class _AdminCheckState extends State<AdminCheck> {
                           title: '비밀번호를 확인 해주세요.',
                           buttons: [
                             DialogButton(
+                              onPressed: () => Navigator.pop(context),
+                              width: 100.w,
+                              height: 30.h,
+                              color: Colors.redAccent,
                               child: Text(
                                 '확인',
                                 style: TextStyle(
@@ -60,20 +64,16 @@ class _AdminCheckState extends State<AdminCheck> {
                                     fontFamily: 'customfont',
                                     color: Colors.white),
                               ),
-                              onPressed: () => Navigator.pop(context),
-                              width: 100.w,
-                              height: 30.h,
-                              color: Colors.redAccent,
                             )
                           ],
                         ).show();
                       }
                     },
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red, fixedSize: Size(180.w, 50.h)),
                     child: Text('확인',
                         style: TextStyle(
                             fontSize: 20.sp, fontFamily: 'customfont')),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.red, fixedSize: Size(180.w, 50.h)),
                   )
                 ]))));
   }
@@ -159,6 +159,10 @@ class CustomElevatedButton {
                       title: '정보 등록 성공',
                       buttons: [
                         DialogButton(
+                          onPressed: () => Navigator.pop(context),
+                          width: 100.w,
+                          height: 30.h,
+                          color: Colors.redAccent,
                           child: Text(
                             '확인',
                             style: TextStyle(
@@ -166,10 +170,6 @@ class CustomElevatedButton {
                                 fontFamily: 'customfont',
                                 color: Colors.white),
                           ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 100.w,
-                          height: 30.h,
-                          color: Colors.redAccent,
                         )
                       ],
                     ).show());
@@ -180,6 +180,10 @@ class CustomElevatedButton {
               title: '정보 등록 실패',
               buttons: [
                 DialogButton(
+                  onPressed: () => Navigator.pop(context),
+                  width: 100.w,
+                  height: 30.h,
+                  color: Colors.redAccent,
                   child: Text(
                     '확인',
                     style: TextStyle(
@@ -187,10 +191,6 @@ class CustomElevatedButton {
                         fontFamily: 'customfont',
                         color: Colors.white),
                   ),
-                  onPressed: () => Navigator.pop(context),
-                  width: 100.w,
-                  height: 30.h,
-                  color: Colors.redAccent,
                 )
               ],
             ).show();
@@ -202,6 +202,10 @@ class CustomElevatedButton {
             title: '정보를 확인 해주세요.',
             buttons: [
               DialogButton(
+                onPressed: () => Navigator.pop(context),
+                width: 100.w,
+                height: 30.h,
+                color: Colors.redAccent,
                 child: Text(
                   '확인',
                   style: TextStyle(
@@ -209,19 +213,15 @@ class CustomElevatedButton {
                       fontFamily: 'customfont',
                       color: Colors.white),
                 ),
-                onPressed: () => Navigator.pop(context),
-                width: 100.w,
-                height: 30.h,
-                color: Colors.redAccent,
               )
             ],
           ).show();
         }
       },
-      child: Text(text,
-          style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
       style: ElevatedButton.styleFrom(
           primary: Colors.green, fixedSize: Size(180.w, 50.h)),
+      child: Text(text,
+          style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
     );
   }
 
@@ -246,6 +246,10 @@ class CustomElevatedButton {
                       title: '정보 삭제 성공',
                       buttons: [
                         DialogButton(
+                          onPressed: () => Navigator.pop(context),
+                          width: 100.w,
+                          height: 30.h,
+                          color: Colors.redAccent,
                           child: Text(
                             '확인',
                             style: TextStyle(
@@ -253,10 +257,6 @@ class CustomElevatedButton {
                                 fontFamily: 'customfont',
                                 color: Colors.white),
                           ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 100.w,
-                          height: 30.h,
-                          color: Colors.redAccent,
                         )
                       ],
                     ).show());
@@ -267,6 +267,10 @@ class CustomElevatedButton {
               title: '정보 삭제 실패',
               buttons: [
                 DialogButton(
+                  onPressed: () => Navigator.pop(context),
+                  width: 100.w,
+                  height: 30.h,
+                  color: Colors.redAccent,
                   child: Text(
                     '확인',
                     style: TextStyle(
@@ -274,10 +278,6 @@ class CustomElevatedButton {
                         fontFamily: 'customfont',
                         color: Colors.white),
                   ),
-                  onPressed: () => Navigator.pop(context),
-                  width: 100.w,
-                  height: 30.h,
-                  color: Colors.redAccent,
                 )
               ],
             ).show();
@@ -289,6 +289,10 @@ class CustomElevatedButton {
             title: '정보를 확인 해주세요.',
             buttons: [
               DialogButton(
+                onPressed: () => Navigator.pop(context),
+                width: 100.w,
+                height: 30.h,
+                color: Colors.redAccent,
                 child: Text(
                   '확인',
                   style: TextStyle(
@@ -296,19 +300,15 @@ class CustomElevatedButton {
                       fontFamily: 'customfont',
                       color: Colors.white),
                 ),
-                onPressed: () => Navigator.pop(context),
-                width: 100.w,
-                height: 30.h,
-                color: Colors.redAccent,
               )
             ],
           ).show();
         }
       },
-      child: Text(text,
-          style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
       style: ElevatedButton.styleFrom(
           primary: Colors.red, fixedSize: Size(180.w, 50.h)),
+      child: Text(text,
+          style: TextStyle(fontSize: 20.sp, fontFamily: 'customfont')),
     );
   }
 }

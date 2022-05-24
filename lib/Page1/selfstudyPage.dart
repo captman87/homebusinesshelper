@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 int indexNum = 0;
 List<String> items = [
+  '화법\n바로가기',
   '암\n바로가기',
   '심혈관질환\n바로가기',
   '뇌혈관질환\n바로가기',
@@ -12,6 +13,7 @@ List<String> items = [
   '당뇨\n바로가기',
   '사망\n바로가기',
 ];
+List<String> narration_items = ['비유화법', '설득화법'];
 List<String> cancer_items = [
   '암 기본 용어',
   '암의 병기 구분',
@@ -90,7 +92,7 @@ class _SelfStudyPageState extends State<SelfStudyPage> {
       return GridView.count(
         crossAxisCount: 3,
         children: List<Widget>.generate(
-          6,
+          7,
           (index) => Container(
             margin: EdgeInsets.all(8.h),
             child: OutlinedButton(
@@ -131,6 +133,9 @@ ButtonStyle CustomButtonStyle(int index) {
   } else if (index == 4) {
     return ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.orange[400]));
+  } else if (index == 5) {
+    return ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.brown[400]));
   } else {
     return ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.deepPurple[400]));

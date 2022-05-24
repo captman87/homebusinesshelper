@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -56,9 +56,6 @@ class _GetAuthState extends State<GetAuth> {
                 ),
                 const Padding(padding: EdgeInsets.only(top: 50)),
                 ElevatedButton(
-                    child: Text('로그인',
-                        style: TextStyle(
-                            fontSize: 20.sp, fontFamily: 'customfont')),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.redAccent,
                         fixedSize: Size(180.w, 50.h)),
@@ -88,6 +85,10 @@ class _GetAuthState extends State<GetAuth> {
                             title: '이름 을 다시 확인 해주세요.',
                             buttons: [
                               DialogButton(
+                                onPressed: () => Navigator.pop(context),
+                                width: 100.w,
+                                height: 30.h,
+                                color: Colors.redAccent,
                                 child: Text(
                                   '확인',
                                   style: TextStyle(
@@ -95,10 +96,6 @@ class _GetAuthState extends State<GetAuth> {
                                       fontFamily: 'customfont',
                                       color: Colors.white),
                                 ),
-                                onPressed: () => Navigator.pop(context),
-                                width: 100.w,
-                                height: 30.h,
-                                color: Colors.redAccent,
                               )
                             ],
                           ).show();
@@ -110,6 +107,10 @@ class _GetAuthState extends State<GetAuth> {
                           title: '사번을 다시 확인 해주세요.',
                           buttons: [
                             DialogButton(
+                              onPressed: () => Navigator.pop(context),
+                              width: 100.w,
+                              height: 30.h,
+                              color: Colors.redAccent,
                               child: Text(
                                 '확인',
                                 style: TextStyle(
@@ -117,15 +118,14 @@ class _GetAuthState extends State<GetAuth> {
                                     fontFamily: 'customfont',
                                     color: Colors.white),
                               ),
-                              onPressed: () => Navigator.pop(context),
-                              width: 100.w,
-                              height: 30.h,
-                              color: Colors.redAccent,
                             )
                           ],
                         ).show();
                       }
-                    })
+                    },
+                    child: Text('로그인',
+                        style: TextStyle(
+                            fontSize: 20.sp, fontFamily: 'customfont')))
               ],
             )),
       ),
