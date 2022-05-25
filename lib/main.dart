@@ -7,6 +7,7 @@ import 'package:flutter_admob_app_open/flutter_admob_app_open.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -118,12 +119,6 @@ class _MainPageState extends State<MainPage>
   BannerAd? _anchoredAdaptiveAd;
   bool _isLoaded = false;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    adsAfterSplash();
-  }
-
   void adsAfterSplash() async {
     await FlutterAdmobAppOpen.instance.initialize(
         appAppOpenAdUnitId: appAppOpenAdUnitId, targetingInfo: targetingInfo);
@@ -163,7 +158,14 @@ class _MainPageState extends State<MainPage>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    adsAfterSplash();
+  }
+
+  @override
   void initState() {
+    super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       showDialog(
           context: context,
@@ -183,7 +185,7 @@ class _MainPageState extends State<MainPage>
                 );
               }));
     });
-    super.initState();
+    FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   }
 
   Widget DailyRandomComments() {
@@ -199,6 +201,7 @@ class _MainPageState extends State<MainPage>
     switch (rand) {
       case 0:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -208,6 +211,7 @@ class _MainPageState extends State<MainPage>
         );
       case 1:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -217,6 +221,7 @@ class _MainPageState extends State<MainPage>
         );
       case 2:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n성공은 영원하지 않고\n실패는 치명적이지 않다\n\n-마이크 디트카', 17),
@@ -224,6 +229,7 @@ class _MainPageState extends State<MainPage>
         );
       case 3:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -232,6 +238,7 @@ class _MainPageState extends State<MainPage>
         );
       case 4:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -240,6 +247,7 @@ class _MainPageState extends State<MainPage>
         );
       case 5:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -249,6 +257,7 @@ class _MainPageState extends State<MainPage>
         );
       case 6:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -258,6 +267,7 @@ class _MainPageState extends State<MainPage>
         );
       case 7:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -266,6 +276,7 @@ class _MainPageState extends State<MainPage>
         );
       case 8:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -275,6 +286,7 @@ class _MainPageState extends State<MainPage>
         );
       case 9:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -284,6 +296,7 @@ class _MainPageState extends State<MainPage>
         );
       case 10:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n경험은 실수를 거듭해야만 서서히 알게 된다\n\n-J.A 푸르드', 17),
@@ -291,6 +304,7 @@ class _MainPageState extends State<MainPage>
         );
       case 11:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -300,6 +314,7 @@ class _MainPageState extends State<MainPage>
         );
       case 12:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -309,6 +324,7 @@ class _MainPageState extends State<MainPage>
         );
       case 13:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -317,6 +333,7 @@ class _MainPageState extends State<MainPage>
         );
       case 14:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n고통 뒤의 즐거움은 달콤하다\n\n-존 드라이든', 17),
@@ -324,6 +341,7 @@ class _MainPageState extends State<MainPage>
         );
       case 15:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -332,6 +350,7 @@ class _MainPageState extends State<MainPage>
         );
       case 16:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -340,6 +359,7 @@ class _MainPageState extends State<MainPage>
         );
       case 17:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -349,6 +369,7 @@ class _MainPageState extends State<MainPage>
         );
       case 18:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -357,6 +378,7 @@ class _MainPageState extends State<MainPage>
         );
       case 19:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -366,6 +388,7 @@ class _MainPageState extends State<MainPage>
         );
       case 20:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n웃음 없는 하루는 낭비한 하루다\n\n-찰리 채플린', 17),
@@ -373,6 +396,7 @@ class _MainPageState extends State<MainPage>
         );
       case 21:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n만족은 결과가 아니라 과정에서 온다\n\n-제임스 딘', 17),
@@ -380,6 +404,7 @@ class _MainPageState extends State<MainPage>
         );
       case 22:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -388,6 +413,7 @@ class _MainPageState extends State<MainPage>
         );
       case 23:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n웃음 없는 하루는 낭비한 하루다\n\n-찰리 채플린', 17),
@@ -395,6 +421,7 @@ class _MainPageState extends State<MainPage>
         );
       case 24:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText(
@@ -403,6 +430,7 @@ class _MainPageState extends State<MainPage>
         );
       case 25:
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 300, child: ExtendedImage.asset(img.toString())),
             CustomStyledText('\n\n시작이 반이다\n\n-아리스토 텔레스', 17),
